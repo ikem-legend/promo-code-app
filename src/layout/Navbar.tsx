@@ -15,7 +15,7 @@ const Navbar: FC = () => {
         <Box />
         <Box>
           <Link>
-            <Image src={AppPage} alt="nav link" _hover={{ fill: 'white' }} />
+            <Image src={AppPage} alt="nav link" />
           </Link>
         </Box>
         <Box>
