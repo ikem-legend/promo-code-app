@@ -3,8 +3,8 @@ import { Grid, GridItem, Text } from '@chakra-ui/react';
 
 const Header: FC = () => {
   return (
-    <Grid templateColumns="repeat(16, 1fr)" gap={1}>
-      <GridItem colSpan={1}>
+    <Grid templateColumns="repeat(16, 1fr)" gap={1} p="1em 2em" bg="#FFFFFF">
+      <GridItem colSpan={{ base: 5, sm: 2 }}>
         <Text fontSize="0.75em" color="#7D7D7D">
           Balance
         </Text>
@@ -12,7 +12,7 @@ const Header: FC = () => {
           213 920 $
         </Text>
       </GridItem>
-      <GridItem colSpan={1}>
+      <GridItem colSpan={{ base: 5, sm: 2 }}>
         <Text fontSize="0.75em" color="#7D7D7D">
           Payout
         </Text>

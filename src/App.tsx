@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import AppContainer from './layout/AppContainer';
-import Home from './pages/Home';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import AppContainer from './layout/AppContainer';
+import BaseLayout from './layout/BaseLayout';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
       <ChakraProvider>
         <ErrorBoundary>
           <Suspense fallback={<div>Loading...</div>}>
-            <Home />
+            <BaseLayout>
+              <Home />
+            </BaseLayout>
           </Suspense>
         </ErrorBoundary>
       </ChakraProvider>

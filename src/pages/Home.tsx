@@ -1,11 +1,20 @@
-import React, {FC} from "react";
-import {Box} from '@chakra-ui/react'
-import Header from "../components/Header";
+import React, { FC } from 'react';
+import { Box, Text } from '@chakra-ui/react';
+import Header from '../components/Header';
+import Filter from '../components/Filter';
 
 const Home: FC = () => {
   return (
-    <Box h="100%" w="100%"><Header /></Box>
-  )
-}
+    <Box>
+      <Header />
+      <Box p="2em">
+        <Text as="h2" fontSize="40px">
+          Services
+        </Text>
+        <Filter />
+      </Box>
+    </Box>
+  );
+};
 
-export default Home
+export default Home;
