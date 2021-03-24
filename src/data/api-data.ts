@@ -1,4 +1,4 @@
-type PromoCode = {
+export type PromoCode = {
   id: number;
   url: string;
   description: string;

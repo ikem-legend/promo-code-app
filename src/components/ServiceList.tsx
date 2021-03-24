@@ -10,8 +10,14 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { CopyIcon } from '@chakra-ui/icons';
+import { PromoCode } from '../data/api-data';
 
-const ServiceList: FC = () => {
+type ServiceListProps = {
+  promoData: PromoCode;
+  activateBonus(id: number): void;
+};
+
+const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
   return (
     <Grid
       templateColumns="repeat(8, 1fr)"
@@ -22,9 +28,9 @@ const ServiceList: FC = () => {
     >
       <GridItem colSpan={4}>
         <Box lineHeight="2em">
-          <Text>Name</Text>
+          <Text>{promoData.url}</Text>
         </Box>
-        <Text>Description</Text>
+        <Text fontSize="0.7em">{promoData.description}</Text>
       </GridItem>
       <GridItem colSpan={2}>
         <Box lineHeight="2em">
@@ -33,7 +39,7 @@ const ServiceList: FC = () => {
           </Text>
         </Box>
         <InputGroup>
-          <Input value="itpromocodes" />
+          <Input value={promoData.code} readonly />
           <InputRightElement children={<CopyIcon color="#0085FF" />} />
         </InputGroup>
       </GridItem>
@@ -50,6 +56,7 @@ const ServiceList: FC = () => {
             color: '#0085FF',
             border: '1px solid #0085FF',
           }}
+          onClick={() => activateBonus(promoData.id)}
         >
           Activate bonus
         </Button>
