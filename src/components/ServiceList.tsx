@@ -24,13 +24,16 @@ const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
       gap={2}
       bgColor="#FFFFFF"
       p="2em"
+      mb="1em"
       borderRadius="0.5em"
     >
       <GridItem colSpan={4}>
         <Box lineHeight="2em">
           <Text>{promoData.url}</Text>
         </Box>
-        <Text fontSize="0.7em">{promoData.description}</Text>
+        <Text fontSize="0.7em" color="#7D7D7D">
+          {promoData.description}
+        </Text>
       </GridItem>
       <GridItem colSpan={2}>
         <Box lineHeight="2em">
@@ -39,7 +42,7 @@ const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
           </Text>
         </Box>
         <InputGroup>
-          <Input value={promoData.code} readonly />
+          <Input value={promoData.code} readOnly />
           <InputRightElement children={<CopyIcon color="#0085FF" />} />
         </InputGroup>
       </GridItem>

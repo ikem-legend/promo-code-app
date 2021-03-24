@@ -6,7 +6,7 @@ import ServiceList from '../components/ServiceList';
 import { apiData } from '../data/api-data';
 
 const Home: FC = () => {
-  const promoData = apiData[0];
+  const promoData = apiData;
   const activateBonus = (id: number): void => {
     console.log(id);
   };
@@ -18,7 +18,19 @@ const Home: FC = () => {
           Services
         </Text>
         <Filter />
-        <ServiceList promoData={promoData} activateBonus={activateBonus} />
+        {promoData ? (
+          promoData.map((data) => (
+            <ServiceList
+              promoData={data}
+              activateBonus={activateBonus}
+              key={data.id}
+            />
+          ))
+        ) : (
+          <Box>
+            <Text textAlign="center">No services available</Text>
+          </Box>
+        )}
         <Box p="2em">
           <Text textAlign="right" fontSize="0.7em" color="#A8A8A8">
             © IT Promocodes, 2019
