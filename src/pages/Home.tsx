@@ -3,6 +3,7 @@ import { Box, Text, Spinner } from '@chakra-ui/react';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import ServiceList from '../components/ServiceList';
+import Footer from '../components/Footer';
 import { apiData, PromoCode } from '../data/api-data';
 
 const Home: FC = () => {
@@ -44,11 +45,7 @@ const Home: FC = () => {
             )}
           </>
         )}
-        <Box p="2em">
-          <Text textAlign="right" fontSize="0.7em" color="#A8A8A8">
-            © IT Promocodes, 2019
-          </Text>
-        </Box>
+        <Footer />
       </Box>
     </Box>
   );
