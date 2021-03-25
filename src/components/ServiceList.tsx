@@ -102,7 +102,7 @@ const ServiceList: FC<ServiceListProps> = ({ promoData }) => {
           }}
           onClick={() => updateBonus(promoData.id)}
         >
-          {bonus ? 'Deactivate Bonus' : 'Activate Bonus'}
+          {bonus ? 'Activated' : 'Activate Bonus'}
         </Button>
       </GridItem>
     </Grid>
