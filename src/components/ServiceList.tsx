@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
 import {
   Grid,
   GridItem,
@@ -8,6 +8,7 @@ import {
   InputGroup,
   InputRightElement,
   Button,
+  useToast,
 } from '@chakra-ui/react';
 import { CopyIcon } from '@chakra-ui/icons';
 import { PromoCode } from '../data/api-data';
@@ -18,6 +19,19 @@ type ServiceListProps = {
 };
 
 const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
+  const promoCodeRef = useRef<HTMLInputElement>(null);
+  const toast = useToast();
+  const copyCodeToClipboard = (): void => {
+    if (promoCodeRef.current) {
+      promoCodeRef?.current?.select();
+      document.execCommand('copy');
+      toast({
+        title: 'Copied to clipboard',
+        position: 'top-right',
+      });
+    }
+  };
+
   return (
     <Grid
       templateColumns="repeat(8, 1fr)"
@@ -42,8 +56,17 @@ const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
           </Text>
         </Box>
         <InputGroup>
-          <Input value={promoData.code} readOnly />
-          <InputRightElement children={<CopyIcon color="#0085FF" />} />
+          <Input
+            type="text"
+            value={promoData.code}
+            readOnly
+            ref={promoCodeRef}
+          />
+          <InputRightElement
+            children={
+              <CopyIcon color="#0085FF" onClick={copyCodeToClipboard} />
+            }
+          />
         </InputGroup>
       </GridItem>
       <GridItem colSpan={2}>
