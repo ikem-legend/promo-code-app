@@ -57,6 +57,7 @@ const ServiceList: FC<ServiceListProps> = ({ promoData }) => {
       p="2em"
       mb="1em"
       borderRadius="0.5em"
+      data-testid="service-item"
     >
       <GridItem colSpan={4}>
         <Box lineHeight="2em">
