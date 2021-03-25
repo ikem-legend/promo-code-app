@@ -27,7 +27,7 @@ const ServiceList: FC<ServiceListProps> = ({ promoData }) => {
     } else {
       setBonus(true);
     }
-  });
+  }, [promoData.id]);
   const toast = useToast();
   const copyCodeToClipboard = (): void => {
     if (promoCodeRef.current) {
@@ -68,7 +68,7 @@ const ServiceList: FC<ServiceListProps> = ({ promoData }) => {
       </GridItem>
       <GridItem colSpan={2}>
         <Box lineHeight="2em">
-          <Text textTransform="uppercase" fontSize="0.4em">
+          <Text textTransform="uppercase" fontSize="0.5em">
             PromoCode
           </Text>
         </Box>
@@ -88,7 +88,7 @@ const ServiceList: FC<ServiceListProps> = ({ promoData }) => {
       </GridItem>
       <GridItem colSpan={2}>
         <Box lineHeight="2em">
-          <Text visibility="hidden">Activate bonus</Text>
+          <Text visibility="hidden">Activate Bonus</Text>
         </Box>
         <Button
           isFullWidth={true}
@@ -101,7 +101,7 @@ const ServiceList: FC<ServiceListProps> = ({ promoData }) => {
           }}
           onClick={() => updateBonus(promoData.id)}
         >
-          {bonus ? 'Deactivate bonus' : 'Activate Bonus'}
+          {bonus ? 'Deactivate Bonus' : 'Activate Bonus'}
         </Button>
       </GridItem>
     </Grid>

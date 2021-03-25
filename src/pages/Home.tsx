@@ -19,7 +19,19 @@ const Home: FC = () => {
         clearTimeout(dataRequestTimeout);
       }
     };
-  });
+  }, []);
+
+  const updateFilterResults = (value: string): void => {
+    const filterResults = apiData.filter((data) =>
+      data.url.toLowerCase().includes(value.toLowerCase()),
+    );
+    setPromoData(filterResults);
+  };
+
+  const resetFilterResults = () => {
+    setPromoData(apiData);
+  };
+
   return (
     <Box>
       <Header />
@@ -33,8 +45,11 @@ const Home: FC = () => {
           </Box>
         ) : (
           <>
-            <Filter />
-            {promoData ? (
+            <Filter
+              updateFilterResults={updateFilterResults}
+              resetFilterResults={resetFilterResults}
+            />
+            {promoData.length ? (
               promoData.map((data) => (
                 <ServiceList promoData={data} key={data.id} />
               ))
