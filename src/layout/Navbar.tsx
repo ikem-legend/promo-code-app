@@ -5,7 +5,7 @@ import AppPage from '../assets/images/app-pages-icon.svg';
 
 const Navbar: FC = () => {
   return (
-    <Box h="100vh" bgColor="#1B1D29" py="1em">
+    <Box h="100vh" pos="sticky" top="0" left="0" bgColor="#1B1D29" py="1em">
       <VStack spacing={8} as="nav">
         <Box>
           <Link>
