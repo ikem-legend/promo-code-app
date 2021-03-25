@@ -7,13 +7,6 @@ import { apiData } from '../data/api-data';
 
 const Home: FC = () => {
   const promoData = apiData;
-  const activateBonus = (id: number): void => {
-    const status = localStorage.getItem(String(id));
-    localStorage.setItem(
-      String(id),
-      status === 'false' || !status ? 'true' : 'false',
-    );
-  };
   return (
     <Box>
       <Header />
@@ -24,11 +17,7 @@ const Home: FC = () => {
         <Filter />
         {promoData ? (
           promoData.map((data) => (
-            <ServiceList
-              promoData={data}
-              activateBonus={activateBonus}
-              key={data.id}
-            />
+            <ServiceList promoData={data} key={data.id} />
           ))
         ) : (
           <Box>

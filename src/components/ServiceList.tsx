@@ -15,10 +15,9 @@ import { PromoCode } from '../data/api-data';
 
 type ServiceListProps = {
   promoData: PromoCode;
-  activateBonus(id: number): void;
 };
 
-const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
+const ServiceList: FC<ServiceListProps> = ({ promoData }) => {
   const promoCodeRef = useRef<HTMLInputElement>(null);
   const [bonus, setBonus] = useState(false);
   useEffect(() => {
@@ -43,7 +42,11 @@ const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
 
   const updateBonus = (id: number): void => {
     setBonus(!bonus);
-    activateBonus(id);
+    const status = localStorage.getItem(String(id));
+    localStorage.setItem(
+      String(id),
+      status === 'false' || !status ? 'true' : 'false',
+    );
   };
 
   return (
