@@ -1,12 +1,27 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Grid, GridItem, FormControl, Input, Button } from '@chakra-ui/react';
 
 type FilterProps = {
-  updateFilterValue(_event: React.ChangeEvent<HTMLInputElement>): void;
-  resetFilterValue(): void;
+  updateFilterResults(value: string): void;
+  resetFilterResults(): void;
 };
 
-const Filter: FC<FilterProps> = ({ updateFilterValue, resetFilterValue }) => {
+const Filter: FC<FilterProps> = ({
+  updateFilterResults,
+  resetFilterResults,
+}) => {
+  const [filterTerm, setFilterTerm] = useState('');
+  const updateFilterValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { value } = e.target;
+    setFilterTerm(value);
+    updateFilterResults(value);
+  };
+
+  const resetFilterValue = (): void => {
+    setFilterTerm('');
+    resetFilterResults();
+  };
+
   return (
     <Grid templateColumns="repeat(16, 1fr)" gap={1} p="1em 0">
       <GridItem colSpan={4}>
@@ -14,6 +29,7 @@ const Filter: FC<FilterProps> = ({ updateFilterValue, resetFilterValue }) => {
           <Input
             bgColor="#FFFFFF"
             _focus={{ border: '1px solid #0085FF' }}
+            value={filterTerm}
             onChange={(e) => updateFilterValue(e)}
           />
         </FormControl>

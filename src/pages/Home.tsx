@@ -20,15 +20,15 @@ const Home: FC = () => {
       }
     };
   }, []);
-  const updateFilterValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
+
+  const updateFilterResults = (value: string): void => {
     const filterResults = apiData.filter((data) =>
       data.url.toLowerCase().includes(value.toLowerCase()),
     );
     setPromoData(filterResults);
   };
 
-  const resetFilterValue = () => {
+  const resetFilterResults = () => {
     setPromoData(apiData);
   };
 
@@ -46,8 +46,8 @@ const Home: FC = () => {
         ) : (
           <>
             <Filter
-              updateFilterValue={updateFilterValue}
-              resetFilterValue={resetFilterValue}
+              updateFilterResults={updateFilterResults}
+              resetFilterResults={resetFilterResults}
             />
             {promoData.length ? (
               promoData.map((data) => (
