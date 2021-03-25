@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useRef, useEffect, useState } from 'react';
 import {
   Grid,
   GridItem,
@@ -20,6 +20,15 @@ type ServiceListProps = {
 
 const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
   const promoCodeRef = useRef<HTMLInputElement>(null);
+  const [bonus, setBonus] = useState(false);
+  useEffect(() => {
+    const status = localStorage.getItem(String(promoData.id));
+    if (status === 'false' || !status) {
+      setBonus(false);
+    } else {
+      setBonus(true);
+    }
+  });
   const toast = useToast();
   const copyCodeToClipboard = (): void => {
     if (promoCodeRef.current) {
@@ -30,6 +39,11 @@ const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
         position: 'top-right',
       });
     }
+  };
+
+  const updateBonus = (id: number): void => {
+    setBonus(!bonus);
+    activateBonus(id);
   };
 
   return (
@@ -71,7 +85,7 @@ const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
       </GridItem>
       <GridItem colSpan={2}>
         <Box lineHeight="2em">
-          <Text visibility="hidden">Activate Button</Text>
+          <Text visibility="hidden">Activate bonus</Text>
         </Box>
         <Button
           isFullWidth={true}
@@ -82,9 +96,9 @@ const ServiceList: FC<ServiceListProps> = ({ promoData, activateBonus }) => {
             color: '#0085FF',
             border: '1px solid #0085FF',
           }}
-          onClick={() => activateBonus(promoData.id)}
+          onClick={() => updateBonus(promoData.id)}
         >
-          Activate bonus
+          {bonus ? 'Deactivate bonus' : 'Activate Bonus'}
         </Button>
       </GridItem>
     </Grid>

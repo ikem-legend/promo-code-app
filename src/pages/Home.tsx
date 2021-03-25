@@ -8,7 +8,11 @@ import { apiData } from '../data/api-data';
 const Home: FC = () => {
   const promoData = apiData;
   const activateBonus = (id: number): void => {
-    console.log(id);
+    const status = localStorage.getItem(String(id));
+    localStorage.setItem(
+      String(id),
+      status === 'false' || !status ? 'true' : 'false',
+    );
   };
   return (
     <Box>
