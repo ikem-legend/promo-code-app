@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Box, VStack, Link, Image } from '@chakra-ui/react';
 import AppLogo from '../assets/images/app-logo.svg';
 import AppPage from '../assets/images/app-pages-icon.svg';
+import AppPageWhite from '../assets/images/app-pages-icon-white.svg';
 
 const Navbar: FC = () => {
   return (
@@ -45,7 +46,7 @@ const Navbar: FC = () => {
         </Box>
         <Box>
           <Link>
-            <Image src={AppPage} alt="nav link" />
+            <Image src={AppPageWhite} alt="nav link" />
           </Link>
         </Box>
         <Box>
