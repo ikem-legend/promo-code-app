@@ -19,7 +19,19 @@ const Home: FC = () => {
         clearTimeout(dataRequestTimeout);
       }
     };
-  });
+  }, []);
+  const updateFilterValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { value } = e.target;
+    const filterResults = apiData.filter((data) =>
+      data.url.toLowerCase().includes(value.toLowerCase()),
+    );
+    setPromoData(filterResults);
+  };
+
+  const resetFilterValue = () => {
+    setPromoData(apiData);
+  };
+
   return (
     <Box>
       <Header />
@@ -33,8 +45,11 @@ const Home: FC = () => {
           </Box>
         ) : (
           <>
-            <Filter />
-            {promoData ? (
+            <Filter
+              updateFilterValue={updateFilterValue}
+              resetFilterValue={resetFilterValue}
+            />
+            {promoData.length ? (
               promoData.map((data) => (
                 <ServiceList promoData={data} key={data.id} />
               ))
