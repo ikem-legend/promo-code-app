@@ -26,9 +26,7 @@ test('balance is equal to 159 465 $', () => {
 test('all 10 service items display on page load', async () => {
   render(<Home />);
   await waitFor(
-    () => {
-      return expect(screen.queryAllByTestId('service-item')).toHaveLength(10);
-    },
+    () => expect(screen.queryAllByTestId('service-item')).toHaveLength(10),
     { timeout: 3000 },
   );
 });
