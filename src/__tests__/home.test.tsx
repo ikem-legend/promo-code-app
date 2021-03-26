@@ -23,11 +23,15 @@ test('balance is equal to 159 465 $', () => {
   expect(screen.queryByText('159 465 $')).toBeVisible();
 });
 
-// test('all 10 service items display on page load', async () => {
-//   const { queryAllByTestId, findByText, debug }: RenderResult = render(
-//     <Home />,
-//   );
-// });
+test('all 10 service items display on page load', async () => {
+  render(<Home />);
+  await waitFor(
+    () => {
+      return expect(screen.queryAllByTestId('service-item')).toHaveLength(10);
+    },
+    { timeout: 3000 },
+  );
+});
 
 test('footer is visible', () => {
   render(<Home />);
