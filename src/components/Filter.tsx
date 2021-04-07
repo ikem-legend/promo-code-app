@@ -31,6 +31,7 @@ const Filter: FC<FilterProps> = ({
             _focus={{ border: '1px solid #0085FF' }}
             value={filterTerm}
             onChange={(e) => updateFilterValue(e)}
+            placeholder="Enter filter term"
           />
         </FormControl>
       </GridItem>
